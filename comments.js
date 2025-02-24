@@ -1,8 +1,16 @@
 // create web server
-// create route for comments
-// create route for comments/new
-// create route for comments/:id
-// create route for comments/:id/edit
-// create route for comments/:id/delete
-// create route for comments/:id/put
-// create route for comments/:id/delete
+const http = require('http');
+const fs = require('fs');
+
+// create server
+http.createServer((req, res) => {
+    // read file
+    fs.readFile('comments.html', 'utf-8', (err, data) => {
+        // send response
+        res.writeHead(200, { 'Content-Type': 'text/html' });
+        res.write(data);
+        res.end();
+    });
+}).listen(8080);
+
+console.log('Server is running at http://localhost');
