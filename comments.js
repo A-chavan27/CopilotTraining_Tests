@@ -1,16 +1,20 @@
 // create web server
-const http = require('http');
-const fs = require('fs');
+// create express app
+// create a router
+// create a route
+// create a callback function
+// send a response
 
-// create server
-http.createServer((req, res) => {
-    // read file
-    fs.readFile('comments.html', 'utf-8', (err, data) => {
-        // send response
-        res.writeHead(200, { 'Content-Type': 'text/html' });
-        res.write(data);
-        res.end();
-    });
-}).listen(8080);
+const express = require('express');
+const app = express();
+const commentsRouter = express.Router();
 
-console.log('Server is running at http://localhost');
+commentsRouter.get('/', (req, res) => {
+  res.send('Comments');
+});
+
+app.use('/comments', commentsRouter);
+
+app.listen(3000, () => {
+  console.log('Server is running on port 3000');
+});
